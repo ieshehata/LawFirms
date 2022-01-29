@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "173611762706",
+    "project_id": "law-firms-cfc15",
+    "storage_bucket": "law-firms-cfc15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173611762706:android:d87ca34192f20a785544cb",
+        "android_client_info": {
+          "package_name": "com.app.lawfirms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173611762706-rtegqde20mtrucbng56m8fpnladtb42k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn8iKQISSnXIdGLPFwsKpa8fINDkzN0JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173611762706-rtegqde20mtrucbng56m8fpnladtb42k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
