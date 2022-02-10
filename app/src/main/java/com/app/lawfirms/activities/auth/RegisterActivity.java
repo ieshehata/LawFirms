@@ -23,6 +23,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.squareup.picasso.Picasso;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -44,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     @NotNull
     @NotEmpty
     @Length(min = 3)
-    TextInputEditText name,description;
+    TextInputEditText name;
     @NotNull
     @NotEmpty
     @Length(min = 8)
@@ -59,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
     TextInputEditText email;
     private boolean isEditing = false;
     private UserModel user = new UserModel();
+    private UserModel lawyer = new UserModel();
     private static final int PICK_IMAGE = 55;
     Uri imageUri;
     LinearLayout avatarLayout;
@@ -79,7 +81,6 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         phone = findViewById(R.id.phone);
-        description = findViewById(R.id.description);
 
         register = findViewById(R.id.register);
         login = findViewById(R.id.login);
@@ -87,11 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         validator = new Validator(this);
         validator.setValidationListener(this);
 
-        if(SharedData.userType==2){
-            avatarLayout.setVisibility(View.GONE);
-            description.setVisibility(View.VISIBLE);
 
-        }
 
         avatar.setOnClickListener(v -> {
             if(checkReadPermission()){
@@ -114,14 +111,35 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
                 Objects.requireNonNull(getSupportActionBar()).setTitle("User Profile");
                 register.setText("Update");
                 login.setVisibility(View.GONE);
-                user = SharedData.currentUser;
-                name.setText(SharedData.currentUser.getName());
-                phone.setText(SharedData.currentUser.getPhone());
-                password.setText(SharedData.currentUser.getPass());
-                email.setText(SharedData.currentUser.getEmail());
+                lawyer = SharedData.currentLawyer;
+                name.setText(SharedData.currentLawyer.getName());
+                phone.setText(SharedData.currentLawyer.getPhone());
+                password.setText(SharedData.currentLawyer.getPass());
+                email.setText(SharedData.currentLawyer.getEmail());
             }
         }
 
+        if (SharedData.userType == 3){
+            if (isEditing) {
+                Objects.requireNonNull(getSupportActionBar()).setTitle("User Profile");
+                register.setText("Update");
+                login.setVisibility(View.GONE);
+                assert SharedData.currentLawyer != null;
+                user = SharedData.currentUser;
+                name.setText((CharSequence) SharedData.currentUser.getName());
+                phone.setText(SharedData.currentUser.getPhone());
+                password.setText(SharedData.currentUser.getPass());
+                email.setText(SharedData.currentUser.getEmail());
+                if(!TextUtils.isEmpty(SharedData.currentUser.getProfileImage())) {
+                    Picasso.get()
+                            .load(SharedData.currentUser.getProfileImage())
+                            .into(avatar);
+                }
+            }else {
+                user = new UserModel();
+                user.setState(1);
+            }
+        }
     }
 
     private boolean checkReadPermission(){
@@ -165,15 +183,15 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
         if(SharedData.userType == 2) {
             if(isEditing) {
                 loadingHelper.showLoading("");
-                user.setName(name.getText().toString());
-                user.setPhone(phone.getText().toString());
-                user.setPass(password.getText().toString());
-                user.setEmail(email.getText().toString());
-                SharedData.currentUser = user;
+                lawyer.setName(name.getText().toString());
+                lawyer.setPhone(phone.getText().toString());
+                lawyer.setPass(password.getText().toString());
+                lawyer.setEmail(email.getText().toString());
+                SharedData.currentLawyer = lawyer;
 
-                new UserController().save(user, new UserCallback() {
+                new UserController().save(lawyer, new UserCallback() {
                     @Override
-                    public void onSuccess(ArrayList<UserModel> users) {
+                    public void onSuccess(ArrayList<UserModel> representatires) {
                         loadingHelper.dismissLoading();
                         onBackPressed();
                     }
@@ -185,6 +203,47 @@ public class RegisterActivity extends AppCompatActivity implements Validator.Val
                     }
                 });
 
+            }
+        }else if(SharedData.userType == 3) {
+            if(imageUri != null) {
+                loadingHelper.showLoading("");
+                new UploadController().uploadImage(imageUri, new StringCallback() {
+                    @Override
+                    public void onSuccess(String text) {
+                        loadingHelper.dismissLoading();
+                        user.setName(name.getText().toString());
+                        user.setPhone(phone.getText().toString());
+                        user.setPass(password.getText().toString());
+                        user.setEmail(email.getText().toString());
+                        user.setProfileImage(text);
+                        user.setState(1);
+                        SharedData.currentUser = user;
+                        Intent intent = new Intent(RegisterActivity.this, OTPActivity.class);
+                        intent.putExtra("from", 1);
+                        intent.putExtra("phone", user.getPhone());
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        loadingHelper.dismissLoading();
+                        Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else if(isEditing) {
+                user.setName(name.getText().toString());
+                user.setPhone(phone.getText().toString());
+                user.setPass(password.getText().toString());
+                user.setEmail(email.getText().toString());
+                user.setState(1);
+
+                SharedData.currentUser = user;
+                Intent intent = new Intent(RegisterActivity.this, OTPActivity.class);
+                intent.putExtra("from", 3);
+                intent.putExtra("phone", user.getPhone());
+                startActivity(intent);
+            } else {
+                Toast.makeText(RegisterActivity.this, "Pick your profile picture!", Toast.LENGTH_SHORT).show();
             }
         }
     }

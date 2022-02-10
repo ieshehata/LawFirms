@@ -19,6 +19,8 @@ public class SharedData {
 
     public static UserModel adminUser = new UserModel(true);
     public static UserModel currentUser;
+    public static UserModel currentLawyer;
+
     public static UserModel stalkedUser;
     public static UserHeaderModel currentUserHeader;
     public static UserHeaderModel stalkedUserHeader;

@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     private SharedPreferences sharedPref;
     private LoadingHelper loadingHelper;
     private Validator validator;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +59,9 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         sharedPref = this.getSharedPreferences(SharedData.PREF_KEY, Context.MODE_PRIVATE);
         boolean isSaved = sharedPref.getBoolean(SharedData.IS_USER_SAVED, false);
         int savedType = sharedPref.getInt(SharedData.USER_TYPE, 0);
-
         if(SharedData.userType == 1) {
             ((TextInputLayout) findViewById(R.id.login_phone_field)).setHint(R.string.username);
             phone.setInputType(InputType.TYPE_CLASS_TEXT);
-            phone.setText("");
             forgetPassword.setVisibility(View.GONE);
             register.setVisibility(View.GONE);
         }else {
@@ -74,8 +71,6 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                 login();
             }
         }
-
-
 
         forgetPassword.setOnClickListener(v -> {
             Utils.hideKeyboard(LoginActivity.this);
@@ -97,7 +92,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     private void login() {
         Utils.hideKeyboard(LoginActivity.this);
-        UserModel user = new UserModel(loginPhone, loginPassword);
+        UserModel lawyer = new UserModel(loginPhone, loginPassword,2);
+        UserModel user = new UserModel(loginPhone, loginPassword,3);
 
         if(SharedData.userType == 1) {
             if(loginPhone.equals("admin") && loginPassword.equals("123456")) {
@@ -107,23 +103,27 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             }else {
                 Toast.makeText(LoginActivity.this, "wrong credential", Toast.LENGTH_LONG).show();
             }
-        }else if(SharedData.userType == 2) {
+        }else if(SharedData.userType == 3) { //user
             loadingHelper.showLoading("");
             new UserController().checkLogin(user, new UserCallback() {
                 @Override
-                public void onSuccess(ArrayList<UserModel> users) {
-                    if(users.size() > 0) {
-                        SharedData.currentUser = users.get(0);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putBoolean(SharedData.IS_USER_SAVED, true);
-                        editor.putString(SharedData.PHONE, loginPhone);
-                        editor.putString(SharedData.PASS, loginPassword);
-                        editor.putInt(SharedData.USER_TYPE, SharedData.userType);
-                        editor.apply();
+                public void onSuccess(ArrayList<UserModel> oweners) {
+                    if(oweners.size() > 0) {
                         loadingHelper.dismissLoading();
-                        Intent intent = new Intent(LoginActivity.this, LawyerMainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                        if(oweners.get(0).getState() == 1) {
+                            SharedData.user = oweners.get(0);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putBoolean(SharedData.IS_USER_SAVED, true);
+                            editor.putString(SharedData.PHONE, loginPhone);
+                            editor.putString(SharedData.PASS, loginPassword);
+                            editor.putInt(SharedData.USER_TYPE, SharedData.userType);
+                            editor.apply();
+                            Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Your account not active yet, contact admin to activate!", Toast.LENGTH_LONG).show();
+                        }
                     }else {
                         loadingHelper.dismissLoading();
                         Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();
@@ -135,23 +135,28 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                     Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
                 }
             });
-        }else if(SharedData.userType == 3) { //Station
+        }else if(SharedData.userType == 2) { // caregiver
             loadingHelper.showLoading("");
-            new UserController().checkLogin(user, new UserCallback() {
+            new UserController().checkLogin(lawyer, new UserCallback() {
                 @Override
-                public void onSuccess(ArrayList<UserModel> stations) {
-                    if(stations.size() > 0) {
-                        SharedData.currentUser = stations.get(0);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putBoolean(SharedData.IS_USER_SAVED, true);
-                        editor.putString(SharedData.PHONE, loginPhone);
-                        editor.putString(SharedData.PASS, loginPassword);
-                        editor.putInt(SharedData.USER_TYPE, SharedData.userType);
-                        editor.apply();
+                public void onSuccess(ArrayList<UserModel> lawyers) {
+                    if(lawyers.size() > 0) {
                         loadingHelper.dismissLoading();
-                        Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                        if(lawyers.get(0).getState() == 1) {
+                            SharedData.lawyer = lawyers.get(0);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putBoolean(SharedData.IS_USER_SAVED, true);
+                            editor.putString(SharedData.PHONE, loginPhone);
+                            editor.putString(SharedData.PASS, loginPassword);
+                            editor.putInt(SharedData.USER_TYPE, SharedData.userType);
+                            editor.apply();
+                            Intent intent = new Intent(LoginActivity.this, LawyerMainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Your account not active yet, contact admin to activate!", Toast.LENGTH_LONG).show();
+                        }
+
                     }else {
                         loadingHelper.dismissLoading();
                         Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();

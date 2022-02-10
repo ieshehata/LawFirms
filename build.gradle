@@ -3,8 +3,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        mavenCentral()
-        maven {
+     /*   maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'
             authentication {
                 basic(BasicAuthentication)
@@ -16,7 +15,7 @@ buildscript {
                 // Use the secret token you stored in gradle.properties as the password
                 password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
             }
-        }
+        }*/
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
@@ -31,9 +30,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        mavenCentral()
-        maven { url "https://jitpack.io" }
-        maven {
+        /*maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'
             authentication {
                 basic(BasicAuthentication)
@@ -45,7 +42,7 @@ allprojects {
                 // Use the secret token you stored in gradle.properties as the password
                 password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
             }
-        }
+        }*/
     }
 }
 

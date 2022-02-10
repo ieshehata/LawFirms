@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -30,8 +31,15 @@ public class UserHomeFragment extends Fragment implements LawyersAdapter.LawyerL
     private LoadingHelper loadingHelper;
     private RecyclerView recyclerView;
     private View personal;
-    private Layout criminal;
-    private Layout commercial,publicc,international,financial,real,labor,administrative,civil;
+    private LinearLayout criminal;
+    private LinearLayout commercial;
+    private LinearLayout publicc;
+    private LinearLayout international;
+    private LinearLayout financial;
+    private LinearLayout real;
+    private LinearLayout labor;
+    private LinearLayout administrative;
+    private LinearLayout civil;
     private LawyersAdapter adapter;
     private ArrayList<UserModel> personals = new ArrayList<>();
     private ArrayList<UserModel> criminals = new ArrayList<>();
@@ -84,7 +92,7 @@ public class UserHomeFragment extends Fragment implements LawyersAdapter.LawyerL
             @Override
             public void onSuccess(ArrayList<UserModel> users) {
                 loadingHelper.dismissLoading();
-                lawyers = new ArrayList<>();
+               /* lawyers = new ArrayList<>();
                 for(UserModel user : users) {
                     if(user.getState() == 1 && user.getUserType() == 2) {
                         lawyers.add(user);
@@ -92,7 +100,7 @@ public class UserHomeFragment extends Fragment implements LawyersAdapter.LawyerL
                         lawyers.add(user);
                         lawyers.add(user);
                     }
-                }
+                }*/
                 if(adapter == null || adapter.getData().size() == 0) {
                     if(listFilter == 0) {
                         adapter = new LawyersAdapter(personals, UserHomeFragment.this);
