@@ -18,9 +18,13 @@ public class AdminMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_main);
         (findViewById(R.id.governorates_city)).setOnClickListener(v -> startActivity(new Intent(this, GovernoratesActivity.class)));
 
-        (findViewById(R.id.suppliers)).setOnClickListener(v -> startActivity(new Intent(this, LawyersActivity.class)));
+        (findViewById(R.id.lawyers)).setOnClickListener(v -> startActivity(new Intent(this, LawyersActivity.class)));
 
         (findViewById(R.id.users)).setOnClickListener(v -> startActivity(new Intent(this, UsersActivity.class)));
+
+        (findViewById(R.id.tips)).setOnClickListener(v -> startActivity(new Intent(this,
+                TipsActivity.class)));
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

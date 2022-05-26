@@ -46,7 +46,7 @@ public class UserProfileFragment extends Fragment implements Validator.Validatio
     @NotNull
     @NotEmpty
     @Length(min = 3)
-    TextInputEditText  name;
+    TextInputEditText name;
 
     @NotNull
     @NotEmpty
@@ -106,16 +106,16 @@ public class UserProfileFragment extends Fragment implements Validator.Validatio
     @SuppressLint("DefaultLocale")
     private void setData() {
         register.setText("Update");
-        assert SharedData.user != null;
-        user = SharedData.user;
-        name.setText(SharedData.user.getName());
-        phone.setText(SharedData.user.getPhone());
-        password.setText(SharedData.user.getPass());
-        email.setText(SharedData.user.getEmail());
+        assert SharedData.currentUser != null;
+        user = SharedData.currentUser;
+        name.setText(SharedData.currentUser.getName());
+        phone.setText(SharedData.currentUser.getPhone());
+        password.setText(SharedData.currentUser.getPass());
+        email.setText(SharedData.currentUser.getEmail());
 
-        if (!TextUtils.isEmpty(SharedData.user.getProfileImage())) {
+        if (!TextUtils.isEmpty(SharedData.currentUser.getProfileImage())) {
             Picasso.get()
-                    .load(SharedData.user.getProfileImage())
+                    .load(SharedData.currentUser.getProfileImage())
                     .into(avatar);
         }
 
@@ -164,43 +164,48 @@ public class UserProfileFragment extends Fragment implements Validator.Validatio
         user.setPass(password.getText().toString());
         user.setEmail(email.getText().toString());
 
-        SharedData.user = user;
+        SharedData.currentUser = user;
 
         if(imageUri != null) {
             loadingHelper.showLoading("");
             new UploadController().uploadImage(imageUri, new StringCallback() {
                 @Override
                 public void onSuccess(String text) {
-                    SharedData.user.setProfileImage(text);
-                    if(petUri != null) {
-                        new UploadController().uploadImage(petUri, new StringCallback() {
-                            @Override
-                            public void onSuccess(String text) {
-                                loadingHelper.dismissLoading();
-                                Toast.makeText(getActivity(), "Saved Successfully!", Toast.LENGTH_SHORT).show();
-                            }
+                    SharedData.currentUser.setProfileImage(text);
+                    new UserController().save(SharedData.currentUser, new UserCallback() {
+                        @Override
+                        public void onSuccess(ArrayList<UserModel> users) {
+                            loadingHelper.dismissLoading();
+                            Toast.makeText(getActivity(), "Saved Successfully!", Toast.LENGTH_SHORT).show();
+                        }
 
-                            @Override
-                            public void onFail(String error) {
-                                loadingHelper.dismissLoading();
-                                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    } else {
-                        new UserController().save(SharedData.user, new UserCallback() {
-                            @Override
-                            public void onSuccess(ArrayList<UserModel> users) {
-                                loadingHelper.dismissLoading();
-                                Toast.makeText(getActivity(), "Saved Successfully!", Toast.LENGTH_SHORT).show();
-                            }
+                        @Override
+                        public void onFail(String error) {
+                            loadingHelper.dismissLoading();
+                            Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
-                            @Override
-                            public void onFail(String error) {
-                                loadingHelper.dismissLoading();
-                                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
+                @Override
+                public void onFail(String error) {
+                    loadingHelper.dismissLoading();
+                    Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+            loadingHelper.showLoading("");
+            user.setName(name.getText().toString());
+            user.setPhone(phone.getText().toString());
+            user.setPass(password.getText().toString());
+            user.setEmail(email.getText().toString());
+            SharedData.currentUser = user;
+
+            new UserController().save(SharedData.currentUser, new UserCallback() {
+                @Override
+                public void onSuccess(ArrayList<UserModel> users) {
+                    loadingHelper.dismissLoading();
+                    Toast.makeText(getActivity(), "Saved Successfully!", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

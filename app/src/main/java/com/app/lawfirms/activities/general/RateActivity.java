@@ -36,6 +36,7 @@ public class RateActivity extends AppCompatActivity implements RateAdapter.RateL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate);
+        setTitle(SharedData.currentLawyer.getName() + " Rates");
         list = findViewById(R.id.list);
         add = findViewById(R.id.fab);
 
@@ -56,7 +57,7 @@ public class RateActivity extends AppCompatActivity implements RateAdapter.RateL
         }
 
         loadingHelper.showLoading("");
-        new RateController().getRates( new RateCallback() {
+        new RateController().getRatesAlways(new RateCallback() {
             @Override
             public void onSuccess(ArrayList<RateModel> rates) {
                 loadingHelper.dismissLoading();
@@ -92,8 +93,8 @@ public class RateActivity extends AppCompatActivity implements RateAdapter.RateL
         rate.setComment(commentText);
         rate.setCreatedAt(Calendar.getInstance().getTime());
         rate.setRate(Math.round(rateValue));
-        rate.setFromOwener(SharedData.user);
-        rate.setToSupplier(SharedData.lawyer);
+        rate.setFromOwener(SharedData.currentUser);
+        rate.setToSupplier(SharedData.currentLawyer);
         new RateController().save(rate, new RateCallback() {
             @Override
             public void onSuccess(ArrayList<RateModel> rates) {

@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
 public class ResetPasswordActivity extends AppCompatActivity {
     private EditText pass, confirmPass;
     private LoadingHelper loadingHelper;

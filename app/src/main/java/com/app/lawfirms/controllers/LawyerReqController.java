@@ -18,8 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class LawyerReqController {
-    private String node = "RegistrationRequests";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "RegistrationRequests";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<LawyersReqModel> requests = new ArrayList<>();
 
@@ -121,7 +121,7 @@ public class LawyerReqController {
 
     public void newRequest(UserModel lawyer, final LawyerReqCallback callback) {
         final LawyersReqModel request = new LawyersReqModel();
-        request.setLawyerer(lawyer);
+        request.setLawyer(lawyer);
         request.setState(0);
 
         save(request, new LawyerReqCallback() {
@@ -142,7 +142,7 @@ public class LawyerReqController {
         save(request, new LawyerReqCallback() {
             @Override
             public void onSuccess(ArrayList<LawyersReqModel> requests) {
-                new UserController().getUserByKey(request.getLawyerer().getKey(), new UserCallback() {
+                new UserController().getUserByKey(request.getLawyer().getKey(), new UserCallback() {
                     @Override
                     public void onSuccess(ArrayList<UserModel> suppliers) {
                         if(suppliers.size() > 0) {
@@ -176,5 +176,4 @@ public class LawyerReqController {
             }
         });
     }
-
 }

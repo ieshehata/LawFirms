@@ -26,7 +26,7 @@
                 android:layout_height="180dp"
                 android:layout_gravity="center_horizontal"
                 android:adjustViewBounds="true"
-                android:background="@color/colorPrimaryMidDark"
+                android:background="@color/colorPrimaryDark"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_add_photo_60" />
 
@@ -37,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:text="Name"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/profile_image"
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="111111111111"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
 
                 <TextView
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="aa@aa.com"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text=""
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -114,17 +114,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nationality"
+                    android:text="Category"
                     android:textColor="@color/colorGray"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/nationality"
+                    android:id="@+id/category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text=""
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text=""
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text=""
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -185,8 +185,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:backgroundTint="@color/colorPrimaryMidDark"
-                    android:text="Supplier Calender"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:text="Lawyer Calender"
                     android:textColor="@color/white" />
 
                 <Button
@@ -194,7 +194,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:backgroundTint="@color/colorPrimaryMidDark"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:text="@string/show_on_map"
                     android:textColor="@color/white" />
 
@@ -203,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:backgroundTint="@color/colorPrimaryMidDark"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:text="rates"
                     android:textColor="@color/white" />
 
@@ -212,7 +212,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:backgroundTint="@color/colorPrimaryMidDark"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:text="send msg"
                     android:textColor="@color/white" />
 
@@ -227,25 +227,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:paddingEnd="24dp"
+        android:paddingEnd="10dp"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:background="@color/darkBlue"
+        android:background="@color/colorAccentDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price for a day:"
-            android:textColor="@color/colorLightGray"
+            android:text="Price for Consultant:"
+            android:textColor="@color/colorGray"
             android:textSize="12sp"/>
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10 KWD"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textStyle="bold"/>
     </LinearLayout>

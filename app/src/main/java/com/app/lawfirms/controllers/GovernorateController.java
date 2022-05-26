@@ -16,8 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class GovernorateController {
-    private String node = "Governorates";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "Governorates";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<GovernorateModel> governorates = new ArrayList<>();
 

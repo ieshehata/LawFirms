@@ -19,10 +19,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
-    private ArrayList<RateModel> mData = new ArrayList<>();
+    private final ArrayList<RateModel> mData = new ArrayList<>();
     private Context context;
-    private RateListener mListener;
-    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
+    private final RateListener mListener;
+    private final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
 
     public RateAdapter(ArrayList<RateModel> data, RateListener listener) {
         this.mListener = listener;

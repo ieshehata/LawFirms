@@ -20,11 +20,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
-    private ArrayList<UserModel> mData = new ArrayList<>();
-    private UserListener mUserListener;
+    private final ArrayList<UserModel> mData = new ArrayList<>();
+    private final UserListener mUserListener;
     private Context context;
     @SuppressLint("SimpleDateFormat")
-    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
+    private final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
 
 
     public UserAdapter(ArrayList<UserModel> data, UserListener userListener) {

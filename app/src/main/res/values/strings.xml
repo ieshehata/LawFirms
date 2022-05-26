@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Law Firms\'</string>
+    <string name="app_name">Law Firms</string>
+
+
     <string name="don_t_have_an_account_sign_up" />
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="tab_text_1">Seen Requests</string>
@@ -78,13 +80,6 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="msg_token_fmt" translatable="false">FCM registration Token: %s</string>
-
-
-
-
-
-
-
 
 
     <string name="tab_suppliers">Suppliers</string>
@@ -556,7 +551,7 @@
     <string name="pet_gander">pet gander</string>
     <string name="images_for_pet">images for pet</string>
     <string name="calender" />
-    <string name="caregiver_calender">Caregiver Calender</string>
+    <string name="my_calender">My Calender</string>
     <string name="requests">Requests</string>
     <string name="supplier_chat">supplier chat</string>
 

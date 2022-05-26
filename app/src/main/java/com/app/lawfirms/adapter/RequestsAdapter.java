@@ -19,10 +19,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHolder>{
-    private ArrayList<OrderModel> mData;
-    private RequestsListener mRequestsListener;
+    private final ArrayList<OrderModel> mData;
+    private final RequestsListener mRequestsListener;
     private Context context;
-    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public RequestsAdapter(ArrayList<OrderModel> data, RequestsListener requestsListener) {
         this.mData = data;

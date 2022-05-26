@@ -16,8 +16,8 @@ import com.app.lawfirms.models.GovernorateModel;
 import java.util.ArrayList;
 
 public class GovernoratesAdapter extends RecyclerView.Adapter<GovernoratesAdapter.ViewHolder> {
-    private ArrayList<GovernorateModel> mData;
-    private GovernorateListener mGovernorateListener;
+    private final ArrayList<GovernorateModel> mData;
+    private final GovernorateListener mGovernorateListener;
     private Context context;
 
     public GovernoratesAdapter(ArrayList<GovernorateModel> data, GovernorateListener governorateListener) {

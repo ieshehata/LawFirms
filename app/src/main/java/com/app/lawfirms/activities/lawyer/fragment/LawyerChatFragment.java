@@ -43,9 +43,8 @@ public class LawyerChatFragment extends Fragment {
     private ConversationAdapter adapter;
     private TextView noList;
     private RecyclerView recyclerView;
-    private FloatingActionButton add;
-    private static final String TAG = "MainActivity";
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
@@ -53,34 +52,6 @@ public class LawyerChatFragment extends Fragment {
         loadingHelper = new LoadingHelper(getActivity());
         noList = view.findViewById(R.id.no_list);
         loadingHelper = new LoadingHelper(getActivity());
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-
-                        // Log and toast
-                        String msg = getString(R.string.msg_token_fmt, token);
-                        SharedData.currentUser.setFcmToken(token);
-                        new UserController().save(SharedData.currentUser, new UserCallback() {
-                            @Override
-                            public void onSuccess(ArrayList<UserModel> users) {
-                            }
-
-                            @Override
-                            public void onFail(String error) {
-                            }
-                        });
-                        Log.d(TAG, msg);
-                        //Toast.makeText(UserHomeActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
 
         getData();
         return view;
@@ -88,7 +59,7 @@ public class LawyerChatFragment extends Fragment {
 
     private void getData() {
         loadingHelper.showLoading("");
-        new ConversationController().getConversationsByUser(SharedData.currentUser.getKey(), new ConversationCallback() {
+        new ConversationController().getConversationsByUser(SharedData.currentLawyer.getKey(), new ConversationCallback() {
             @Override
             public void onSuccess(ArrayList<ConversationModel> conversations) {
                 loadingHelper.dismissLoading();
@@ -116,11 +87,5 @@ public class LawyerChatFragment extends Fragment {
             }
         });
     }
-
-
-
-
-
-
 
 }

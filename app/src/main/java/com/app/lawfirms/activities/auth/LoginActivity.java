@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         if(SharedData.userType == 1) {
             ((TextInputLayout) findViewById(R.id.login_phone_field)).setHint(R.string.username);
             phone.setInputType(InputType.TYPE_CLASS_TEXT);
+            phone.setText("");
             forgetPassword.setVisibility(View.GONE);
             register.setVisibility(View.GONE);
         }else {
@@ -97,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
         if(SharedData.userType == 1) {
             if(loginPhone.equals("admin") && loginPassword.equals("123456")) {
+                SharedData.currentUser = new UserModel(true);
                 Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -111,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                     if(oweners.size() > 0) {
                         loadingHelper.dismissLoading();
                         if(oweners.get(0).getState() == 1) {
-                            SharedData.user = oweners.get(0);
+                            SharedData.currentUser = oweners.get(0);
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putBoolean(SharedData.IS_USER_SAVED, true);
                             editor.putString(SharedData.PHONE, loginPhone);
@@ -135,7 +137,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                     Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
                 }
             });
-        }else if(SharedData.userType == 2) { // caregiver
+        }else if(SharedData.userType == 2) { // lawyer
             loadingHelper.showLoading("");
             new UserController().checkLogin(lawyer, new UserCallback() {
                 @Override
@@ -143,7 +145,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
                     if(lawyers.size() > 0) {
                         loadingHelper.dismissLoading();
                         if(lawyers.get(0).getState() == 1) {
-                            SharedData.lawyer = lawyers.get(0);
+                            SharedData.currentLawyer = lawyers.get(0);
+                            SharedData.currentUser = lawyers.get(0);
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putBoolean(SharedData.IS_USER_SAVED, true);
                             editor.putString(SharedData.PHONE, loginPhone);
@@ -190,5 +193,4 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             }
         }
     }
-
 }

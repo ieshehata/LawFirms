@@ -39,47 +39,18 @@ public class UserChatFragment extends Fragment  {
     private TextView noList;
     private RecyclerView recyclerView;
 
-    private static final String TAG = "MainActivity";
-
-
-
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        /*
         recyclerView = view.findViewById(R.id.recycler_view);
         loadingHelper = new LoadingHelper(getActivity());
         noList = view.findViewById(R.id.no_list);
         loadingHelper = new LoadingHelper(getActivity());
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
 
-                        // Get new FCM registration token
-                        String token = task.getResult();
-
-                        // Log and toast
-                        String msg = getString(R.string.msg_token_fmt, token);
-                        SharedData.currentUser.setFcmToken(token);
-                        new UserController().save(SharedData.currentUser, new UserCallback() {
-                            @Override
-                            public void onSuccess(ArrayList<UserModel> users) {
-                            }
-
-                            @Override
-                            public void onFail(String error) {
-                            }
-                        });
-                        Log.d(TAG, msg);
-                        //Toast.makeText(UserHomeActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        getData();
+        getData();*/
         return view;
     }
 
@@ -113,11 +84,6 @@ public class UserChatFragment extends Fragment  {
             }
         });
     }
-
-
-
-
-
 
 
 }

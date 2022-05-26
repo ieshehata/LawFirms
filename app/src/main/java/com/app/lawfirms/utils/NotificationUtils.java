@@ -12,9 +12,9 @@ import com.app.lawfirms.R;
 
 
 public class NotificationUtils {
-    private static String TAG = NotificationUtils.class.getSimpleName();
+    private static final String TAG = NotificationUtils.class.getSimpleName();
 
-    private Context mContext;
+    private final Context mContext;
     String channelId = "ot-channel-01";
 
     public NotificationUtils(Context mContext) {

@@ -29,7 +29,7 @@
             android:paddingEnd="8dp"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryVeryDark"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 

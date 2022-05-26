@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class LawyerDetailsActivity extends AppCompatActivity {
     ViewPager viewPager;
-    TextView name, governorate, city, description, phone, email, price, nationality;
+    TextView name, governorate, city, description, phone, email, price, category;
     Button calender,location,sendMsg, rate;
     ImageView avatar;
     LoadingHelper loadingHelper;
@@ -42,7 +42,7 @@ public class LawyerDetailsActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         price = findViewById(R.id.price);
         email = findViewById(R.id.email);
-        nationality = findViewById(R.id.nationality);
+        category = findViewById(R.id.category);
         calender = findViewById(R.id.calender);
         sendMsg =findViewById(R.id.chat);
         rate =findViewById(R.id.rate);
@@ -62,8 +62,41 @@ public class LawyerDetailsActivity extends AppCompatActivity {
         });
 
         sendMsg.setOnClickListener(v -> {
-            Intent intent = new Intent(LawyerDetailsActivity.this, ChatActivity.class);
-            startActivity(intent);
+            SharedData.stalkedUser = SharedData.currentLawyer;
+            new ConversationController().getConversationsByTwoUsers(SharedData.currentUser.getKey(),
+                    SharedData.currentLawyer.getKey(), new ConversationCallback() {
+                        @Override
+                        public void onSuccess(ArrayList<ConversationModel> conversations) {
+                            if (conversations.size() > 0) {
+                                loadingHelper.dismissLoading();
+                                SharedData.currentConversation = conversations.get(0);
+                                Intent intent = new Intent(LawyerDetailsActivity.this, ChatActivity.class);
+                                startActivity(intent);
+                            } else {
+                                new ConversationController().newConversation(SharedData.stalkedUser, new ConversationCallback() {
+                                    @Override
+                                    public void onSuccess(ArrayList<ConversationModel> conversations) {
+                                        loadingHelper.dismissLoading();
+                                        SharedData.currentConversation = conversations.get(0);
+                                        Intent intent = new Intent(LawyerDetailsActivity.this, ChatActivity.class);
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onFail(String error) {
+                                        loadingHelper.dismissLoading();
+                                        Toast.makeText(LawyerDetailsActivity.this, error, Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onFail(String error) {
+                            loadingHelper.dismissLoading();
+                            Toast.makeText(LawyerDetailsActivity.this, error, Toast.LENGTH_LONG).show();
+                        }
+                    });
         });
 
         location.setOnClickListener(v -> {
@@ -76,13 +109,13 @@ public class LawyerDetailsActivity extends AppCompatActivity {
 
     private void getData() {
         loadingHelper.showLoading("");
-        new UserController().getUserByKey(SharedData.lawyer.getKey(), new UserCallback() {
+        new UserController().getUserByKey(SharedData.currentLawyer.getKey(), new UserCallback() {
             @Override
-            public void onSuccess(ArrayList<UserModel> suppliers) {
+            public void onSuccess(ArrayList<UserModel> lawyers) {
                 loadingHelper.dismissLoading();
-                if(suppliers.size() > 0) {
-                    SharedData.lawyer = suppliers.get(0);
-                    lawyer = suppliers.get(0);
+                if(lawyers.size() > 0) {
+                    SharedData.currentLawyer = lawyers.get(0);
+                    lawyer = lawyers.get(0);
                     setData();
                 }else {
                     Toast.makeText(LawyerDetailsActivity.this, "error!", Toast.LENGTH_LONG).show();
@@ -103,15 +136,15 @@ public class LawyerDetailsActivity extends AppCompatActivity {
         name.setText(lawyer.getName());
         phone.setText(lawyer.getPhone());
         email.setText(lawyer.getEmail());
-        nationality.setText(lawyer.getAge());
         governorate.setText(lawyer.getGovernorate().getName());
         city.setText(lawyer.getCity().getName());
-        description.setText(lawyer.getLevel());
+        description.setText(lawyer.getDescription());
+        category.setText(SharedData.servicesNames.get(lawyer.getCategory()));
         price.setText(String.format("%.3f KWD", lawyer.getPrice()));
 
-        if (!TextUtils.isEmpty(SharedData.lawyer.getProfileImage())) {
+        if (!TextUtils.isEmpty(SharedData.currentLawyer.getProfileImage())) {
             Picasso.get()
-                    .load(SharedData.lawyer.getProfileImage())
+                    .load(SharedData.currentLawyer.getProfileImage())
                     .into(avatar);
         }
     }

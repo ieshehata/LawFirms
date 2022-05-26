@@ -27,7 +27,7 @@ public class LawyerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lawyer_main);
         sharedPref = this.getSharedPreferences(SharedData.PREF_KEY, Context.MODE_PRIVATE);
-        setTitle(SharedData.lawyer.getName());
+        setTitle(SharedData.currentLawyer.getName());
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
@@ -56,7 +56,7 @@ public class LawyerMainActivity extends AppCompatActivity {
                 editor.putString(SharedData.PASS, "");
                 editor.putInt(SharedData.USER_TYPE, 0);
                 editor.apply();
-                SharedData.lawyer = null;
+                SharedData.currentLawyer = null;
                 Intent i = new Intent(this, UserTypeActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);

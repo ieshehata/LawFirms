@@ -16,8 +16,8 @@ import com.app.lawfirms.models.CityModel;
 import java.util.ArrayList;
 
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder> {
-    private ArrayList<CityModel> mData;
-    private CityListener mCityListener;
+    private final ArrayList<CityModel> mData;
+    private final CityListener mCityListener;
     private Context context;
 
     public CitiesAdapter(ArrayList<CityModel> data, CityListener cityListener) {

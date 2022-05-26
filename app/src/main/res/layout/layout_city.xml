@@ -33,7 +33,7 @@
             android:inputType="text|textAutoComplete|textAutoCorrect"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:textColor="@color/colorPrimaryVeryDark"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textStyle="bold" />
 

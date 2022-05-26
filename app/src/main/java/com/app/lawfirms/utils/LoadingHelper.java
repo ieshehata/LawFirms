@@ -9,8 +9,8 @@ import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
 
 public class LoadingHelper {
-    private AlertDialog.Builder builder;
-    private ACProgressFlower dialog;
+    private final AlertDialog.Builder builder;
+    private final ACProgressFlower dialog;
 
 
     public LoadingHelper(Context context) {

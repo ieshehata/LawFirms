@@ -11,8 +11,6 @@ import com.app.lawfirms.activities.auth.LoginActivity;
 import com.app.lawfirms.utils.IncomingCallService;
 
 public class IncomingCallActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -45,6 +45,7 @@ public class LawyersCalenderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lawyers_calender);
+        setTitle("Lawyer Calender");
         calendar = findViewById(R.id.calendar);
         darkBlue = new ColorDrawable(getResources().getColor(R.color.darkBlue));
         red = new ColorDrawable(getResources().getColor(R.color.red));
@@ -80,11 +81,24 @@ public class LawyersCalenderActivity extends AppCompatActivity {
                     });
                 } else if(SharedData.userType == 3) {
                     newOrder.setState(0);
-                    newOrder.setUser(SharedData.user);
+                    newOrder.setUser(SharedData.currentUser);
                     SharedData.currentOrder = newOrder;
                     ChoosedDays = new ArrayList<>();
-                    Intent intent = new Intent(LawyersCalenderActivity.this, PayActivity.class);
-                    startActivity(intent);
+                    new OrderController().save(newOrder, new OrderCallback() {
+                        @Override
+                        public void onSuccess(ArrayList<OrderModel> orderCares) {
+                            loadingHelper.dismissLoading();
+                            Toast.makeText(LawyersCalenderActivity.this, "Booked!", Toast.LENGTH_LONG).show();
+                            finish();
+                            startActivity(getIntent());
+                        }
+
+                        @Override
+                        public void onFail(String error) {
+                            loadingHelper.dismissLoading();
+                            Toast.makeText(LawyersCalenderActivity.this, error, Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }
         });
@@ -99,7 +113,7 @@ public class LawyersCalenderActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        lawrer = SharedData.lawyer;
+        lawrer = SharedData.currentLawyer;
         new OrderController().getOrders(new OrderCallback() {
             @Override
             public void onSuccess(ArrayList<OrderModel> orderCares) {

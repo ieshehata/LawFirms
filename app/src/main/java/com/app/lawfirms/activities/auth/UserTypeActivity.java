@@ -6,6 +6,9 @@ import com.app.lawfirms.utils.SharedData;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class UserTypeActivity extends AppCompatActivity {
 
@@ -29,6 +32,41 @@ public class UserTypeActivity extends AppCompatActivity {
             SharedData.userType = 3;
             Intent intent = new Intent(UserTypeActivity.this, LoginActivity.class);
             startActivity(intent);
+        });
+
+
+
+
+        new GovernorateController().getGovernorates(new GovernorateCallback() {
+            @Override
+            public void onSuccess(ArrayList<GovernorateModel> governorates) {
+                if(governorates.size() > 0) {
+                    SharedData.allGovernorates = governorates;
+                }else {
+                    Toast.makeText(UserTypeActivity.this, "Add Governorates from admin first!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(UserTypeActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        new CityController().getCities(new CityCallback() {
+            @Override
+            public void onSuccess(ArrayList<CityModel> cities) {
+                if(cities.size() > 0) {
+                    SharedData.allCities = cities;
+                }else {
+                    Toast.makeText(UserTypeActivity.this, "Add Cities from admin first!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(UserTypeActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

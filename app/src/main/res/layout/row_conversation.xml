@@ -10,7 +10,7 @@
     android:paddingTop="8dp"
     android:paddingEnd="16dp"
     android:paddingBottom="4dp"
-    android:background="@color/white"
+    android:background="#80FFFFFF"
     android:theme="@style/Theme.MaterialComponents.Light">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -83,7 +83,7 @@
                 android:layout_marginStart="2dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_seen_24"
-                app:tint="@color/colorPrimaryMidDark" />
+                app:tint="@color/colorPrimaryDark" />
         </LinearLayout>
 
         <View

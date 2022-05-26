@@ -49,7 +49,6 @@ public class ChatActivity extends AppCompatActivity {
     private TextView title, noMessages;
     private RecyclerView recyclerView;
     private Button block;
-    private ImageButton ring;
     private ImageButton imageMessage, sendMessage;
     private EditText messageET;
     private LoadingHelper loadingHelper;
@@ -63,7 +62,6 @@ public class ChatActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profile_image);
         title = findViewById(R.id.title);
         block = findViewById(R.id.block);
-        ring = findViewById(R.id.ring);
         noMessages = findViewById(R.id.no_messages);
         recyclerView = findViewById(R.id.recycler_view);
         imageMessage = findViewById(R.id.image_message);
@@ -73,6 +71,47 @@ public class ChatActivity extends AppCompatActivity {
         loadingHelper = new LoadingHelper(ChatActivity.this);
         setListener();
         getData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(SharedData.imageUri != null) {
+            if(TextUtils.isEmpty(SharedData.currentConversation.getBlockedBy())) {
+                loadingHelper.showLoading("");
+                disableSend();
+                new UploadController().uploadImage(SharedData.imageUri, new StringCallback() {
+                    @Override
+                    public void onSuccess(String text) {
+                        new ChatController().newMessage(SharedData.currentConversation, currentChat, "", text, other, new ChatCallback() {
+                            @Override
+                            public void onSuccess(ArrayList<ChatModel> chats) {
+                                loadingHelper.dismissLoading();
+                                enableSend();
+                            }
+
+                            @Override
+                            public void onFail(String error) {
+                                loadingHelper.dismissLoading();
+                                enableSend();
+                                Toast.makeText(ChatActivity.this, error, Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        loadingHelper.dismissLoading();
+                        enableSend();
+                        Toast.makeText(ChatActivity.this, error, Toast.LENGTH_LONG).show();
+                    }
+                });
+            } else {
+                Toast.makeText(ChatActivity.this, "You can't send messages to this person!", Toast.LENGTH_LONG).show();
+            }
+            SharedData.imageUri = null;
+        }
     }
 
     @Override
@@ -131,7 +170,7 @@ public class ChatActivity extends AppCompatActivity {
                         .load(other.getProfileImage())
                         .into(profileImage);
             }else if(other.getKey().equals(SharedData.adminUser.getKey())) {
-                profileImage.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorPrimaryMidDark)));
+                profileImage.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorPrimaryDark)));
                 profileImage.setBackgroundResource(R.drawable.gradient_back);
                 profileImage.setImageResource(R.drawable.ic_report_24);
 
@@ -229,49 +268,15 @@ public class ChatActivity extends AppCompatActivity {
             });
         });
 
-        ring.setOnClickListener(v -> {
-            new ChatController().newRing(SharedData.currentConversation, currentChat, other, new ChatCallback() {
-                @Override
-                public void onSuccess(ArrayList<ChatModel> chats) {}
-
-                @Override
-                public void onFail(String error) {}
-            });
-        });
-
         imageMessage.setOnClickListener(v -> {
-            if (checkReadPermission()) {
-                pickImage();
-            }
-        });
-
-        profileImage.setOnClickListener(v -> {
-            SharedData.stalkedUserHeader = other;
-            if(SharedData.userType == 3) { //Owener
-                Intent intent = new Intent(ChatActivity.this, RegisterActivity.class);
-                intent.putExtra("isEditing", false);
-                startActivity(intent);
-            }else if(SharedData.userType == 2) { //Supplier
-                Intent intent = new Intent(ChatActivity.this, RegisterActivity.class);
-                intent.putExtra("isEditing", false);
-                startActivity(intent);
+            if(SharedData.userType == 2) {
+                if (checkReadPermission()) {
+                    pickImage();
+                }
+            }else if(SharedData.userType == 3) {
+                startActivity(new Intent(this, ImageCheckerActivity.class));
             }
 
-
-        });
-
-        title.setOnClickListener(v -> {
-            SharedData.stalkedUserHeader = other;
-
-            if(SharedData.userType == 3) { //Owener
-                Intent intent = new Intent(ChatActivity.this, RegisterActivity.class);
-                intent.putExtra("isEditing", false);
-                startActivity(intent);
-            }else if(SharedData.userType == 2) { //Supplier
-                Intent intent = new Intent(ChatActivity.this, RegisterActivity.class);
-                intent.putExtra("isEditing", false);
-                startActivity(intent);
-            }
         });
     }
 

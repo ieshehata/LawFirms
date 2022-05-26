@@ -2,11 +2,13 @@ package com.app.lawfirms.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,16 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.lawfirms.R;
 import com.app.lawfirms.models.UserModel;
 import com.app.lawfirms.utils.SharedData;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHolder> {
-    private ArrayList<UserModel> mData = new ArrayList<>();
-    private LawyerListener mLawyerListener;
+    private final ArrayList<UserModel> mData = new ArrayList<>();
+    private final LawyerListener mLawyerListener;
     private Context context;
     @SuppressLint("SimpleDateFormat")
-    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
+    private final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
 
     public LawyersAdapter(ArrayList<UserModel> data, LawyerListener lawyerListener) {
         mData.clear();
@@ -47,6 +50,14 @@ public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHold
         holder.name.setText(mData.get(position).getName());
         holder.email.setText(mData.get(position).getEmail());
         holder.phone.setText(mData.get(position).getPhone());
+
+        if (!TextUtils.isEmpty(mData.get(position).getProfileImage())) {
+            holder.image.setImageTintList(null);
+            Picasso.get()
+                    .load(mData.get(position).getProfileImage())
+                    .into(holder.image);
+        }
+
         if(mData.get(position).getState() == 1) { //Active
             holder.blockButton.setVisibility(View.VISIBLE);
             holder.unblockButton.setVisibility(View.GONE);
@@ -57,9 +68,12 @@ public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHold
         if(SharedData.userType == 1) {
             holder.actionButtons.setVisibility(View.VISIBLE);
             holder.delete.setVisibility(View.VISIBLE);
+            holder.divider.setVisibility(View.VISIBLE);
         }else {
             holder.actionButtons.setVisibility(View.GONE);
             holder.delete.setVisibility(View.GONE);
+            holder.divider.setVisibility(View.GONE);
+
         }
     }
 
@@ -89,16 +103,19 @@ public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        View view;
+        View view, divider;
         LinearLayout actionButtons;
         TextView name, email,  phone;
         Button unblockButton, blockButton;
+        ImageView image;
         ImageButton delete;
         LawyerListener listener;
         ViewHolder(View itemView, LawyerListener listener) {
             super(itemView);
             view = itemView.findViewById(R.id.view);
+            divider = itemView.findViewById(R.id.divider);
             actionButtons = itemView.findViewById(R.id.action_buttons);
+            image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
             email = itemView.findViewById(R.id.email);
             phone = itemView.findViewById(R.id.phone);

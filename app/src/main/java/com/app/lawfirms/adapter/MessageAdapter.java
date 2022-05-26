@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-    private ArrayList<MessageModel> mData = new ArrayList<>();
+    private final ArrayList<MessageModel> mData = new ArrayList<>();
     private Context context;
-    private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault());
+    private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault());
 
     public MessageAdapter(ArrayList<MessageModel> data) {
         mData.clear();

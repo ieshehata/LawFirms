@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_admin_main.xml" value="0.1" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_forget_password.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_governorates.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_image.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_image_checker.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_incoming_call.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_lawyer_main.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_lawyer_navigation.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_lawyers.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_lawyers_calender.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_lawyers_list.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_login.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_o_t_p.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_pay.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_place_picker.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_rate.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_register.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_requests.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_reset_password.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_tip_editor.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_tips.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_user_main.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_user_type.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/activity_users.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/dailog_checkout.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/dialog_available_hall.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/dialog_rate.xml" value="0.16530797101449277" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/list_item.xml" value="0.11354166666666667" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/layout/row_lawyer.xml" value="0.11354166666666667" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/menu/menu_logout.xml" value="0.19114583333333332" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.146" />
+        <entry key="..\:/work/programes/mob/Android_Projects/LawFirms/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1245" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

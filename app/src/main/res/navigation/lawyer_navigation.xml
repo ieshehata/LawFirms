@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/navigation_req"
-        android:name="com.app.lawfirms.activities.lawyer.fragment.RequestsFragment"
+        android:name="com.lawfirms.android.activities.lawyer.fragment.RequestsFragment"
         android:label="requests"
         tools:layout="@layout/fragment_list" />
 
 
     <fragment
         android:id="@+id/navigation_calender"
-        android:name="com.app.lawfirms.activities.general.fragment.LawyerCalenderFragment"
-        android:label="@string/calender"
+        android:name="com.lawfirms.android.activities.general.fragment.LawyerCalenderFragment"
+        android:label="@string/my_calender"
         tools:layout="@layout/fragment_lawyer_calender" />
 
     <fragment
-        android:id="@+id/navigation_supplier_chat"
-        android:name="com.app.lawfirms.activities.lawyer.fragment.LawyerChatFragment"
-        android:label="@string/calender"
-        tools:layout="@layout/fragment_list" />
+        android:id="@+id/navigation_chat"
+        android:name="com.lawfirms.android.activities.general.fragment.ConversationsFragment"
+        android:label="@string/chats"
+        tools:layout="@layout/fragment_conversations" />
 
 
 </navigation>

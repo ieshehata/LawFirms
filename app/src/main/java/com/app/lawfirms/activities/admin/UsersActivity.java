@@ -20,14 +20,14 @@ import com.app.lawfirms.utils.LoadingHelper;
 import java.util.ArrayList;
 
 public class UsersActivity  extends AppCompatActivity implements UserAdapter.UserListener, View.OnClickListener{
-private LoadingHelper loadingHelper;
-private RecyclerView recyclerView;
-private Button allButton, activeButton, inactiveButton;
-private UserAdapter adapter;
-private ArrayList<UserModel> allOweners = new ArrayList<>();
-private ArrayList<UserModel> activeOweners = new ArrayList<>();
-private ArrayList<UserModel> inactiveOweners = new ArrayList<>();
-private int listFilter = 0; //0 -> All, 1 -> active, 2 -> inactive
+    private LoadingHelper loadingHelper;
+    private RecyclerView recyclerView;
+    private Button allButton, activeButton, inactiveButton;
+    private UserAdapter adapter;
+    private ArrayList<UserModel> allOweners = new ArrayList<>();
+    private ArrayList<UserModel> activeOweners = new ArrayList<>();
+    private ArrayList<UserModel> inactiveOweners = new ArrayList<>();
+    private int listFilter = 0; //0 -> All, 1 -> active, 2 -> inactive
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,39 +97,39 @@ private int listFilter = 0; //0 -> All, 1 -> active, 2 -> inactive
         switch (v.getId()) {
             case R.id.all_button:
                 listFilter = 0;
-                allButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryMidDark));
+                allButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 allButton.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
 
                 activeButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray));
-                activeButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryVeryDark));
+                activeButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
 
                 inactiveButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray));
-                inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryVeryDark));
+                inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 filterUpdated();
                 break;
 
             case R.id.active_button:
                 listFilter = 1;
                 allButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray));
-                allButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryVeryDark));
+                allButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
 
-                activeButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryMidDark));
+                activeButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 activeButton.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
 
                 inactiveButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray));
-                inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryVeryDark));
+                inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 filterUpdated();
                 break;
 
             case R.id.inactive_button:
                 listFilter = 2;
                 allButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray));
-                allButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryVeryDark));
+                allButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
 
                 activeButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray));
-                activeButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryVeryDark));
+                activeButton.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
 
-                inactiveButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryMidDark));
+                inactiveButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
                 inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
                 filterUpdated();
                 break;

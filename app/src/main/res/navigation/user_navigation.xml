@@ -8,28 +8,33 @@
 
     <fragment
         android:id="@+id/navigation_reg"
-        android:name="com.app.lawfirms.activities.user.fragment.UserProfileFragment"
+        android:name="com.lawfirms.android.activities.user.fragment.UserProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_user_profile" />
 
     <fragment
         android:id="@id/navigation_home"
-        android:name="com.app.lawfirms.activities.user.fragment.UserHomeFragment"
+        android:name="com.lawfirms.android.activities.user.fragment.UserHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home_profile" />
 
     <fragment
         android:id="@+id/navigation_req"
-        android:name="com.app.lawfirms.activities.lawyer.fragment.RequestsFragment"
-        android:label="requests"
+        android:name="com.lawfirms.android.activities.lawyer.fragment.RequestsFragment"
+        android:label="Requests"
         tools:layout="@layout/fragment_list" />
 
     <fragment
-        android:id="@+id/navigation_owener_chat"
-        android:name="com.app.lawfirms.activities.user.fragment.UserChatFragment"
+        android:id="@+id/navigation_chat"
+        android:name="com.lawfirms.android.activities.general.fragment.ConversationsFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_conversations" />
 
+    <fragment
+        android:id="@+id/navigation_tips"
+        android:name="com.lawfirms.android.activities.user.fragment.UserTipsFragment"
+        android:label="Tips"
+        tools:layout="@layout/fragment_user_tips" />
 
 
 </navigation>

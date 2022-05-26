@@ -20,12 +20,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class UserMainActivity extends AppCompatActivity {
     private NavController navController;
     private SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
         sharedPref = this.getSharedPreferences(SharedData.PREF_KEY, Context.MODE_PRIVATE);
-        setTitle(SharedData.user.getName());
+        setTitle(SharedData.currentUser.getName());
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
@@ -48,7 +49,7 @@ public class UserMainActivity extends AppCompatActivity {
                 editor.putString(SharedData.PASS, "");
                 editor.putInt(SharedData.USER_TYPE, 0);
                 editor.apply();
-                SharedData.user = null;
+                SharedData.currentUser = null;
                 Intent i = new Intent(this, UserTypeActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);

@@ -20,6 +20,8 @@ public class UserModel {
         private int state; //-1>Blocked, 0->waiting, 1->Allowed
         private GovernorateModel governorate = new GovernorateModel();
         private CityModel city = new CityModel();
+        private int category;
+        private String description;
         private String profileImage = "";
         private int activated; // -1->Blocked, 0->waiting, 1->Active
         private int userType = 0;
@@ -80,6 +82,22 @@ public class UserModel {
     public boolean validate() {
         return  (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()) &&
                 !TextUtils.isEmpty(name) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(phone);
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getKey() {

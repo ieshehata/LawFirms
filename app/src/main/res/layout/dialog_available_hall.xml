@@ -14,7 +14,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginLeft="4dp"
         android:text="This day is already booked.\n\nDo you want to check other halls in the same day?"
-        android:textColor="@color/colorPrimaryVeryDark"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"/>
 
 
@@ -25,7 +25,7 @@
             android:id="@+id/yes_available_BTN"
             android:layout_width="140dp"
             android:layout_height="48dp"
-            android:backgroundTint="@color/colorPrimaryMidDark"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:textColor="@color/white"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
             android:layout_width="140dp"
             android:layout_height="48dp"
             android:gravity="center"
-            android:backgroundTint="@color/colorPrimaryMidDark"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:textColor="@color/white"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"

@@ -13,7 +13,7 @@
         android:layout_marginBottom="4dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:textColor="@color/colorPrimaryVeryDark"
+        android:textColor="@color/colorPrimaryDark"
         android:text="Complete your booking"
         android:textSize="24sp"/>
 
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total Value:"
-            android:textColor="@color/colorPrimaryVeryDark"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginRight="8dp"/>
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/colorPrimaryVeryDark"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp"
             android:textStyle="bold|italic"
             android:layout_marginRight="8dp"/>
@@ -68,7 +68,7 @@
 
                 android:text="cash"
                 android:layout_marginRight="20dp"
-                android:textColor="@color/colorPrimaryVeryDark" />
+                android:textColor="@color/colorPrimaryDark" />
 
             <RadioButton
                 android:id="@+id/ebay_RBTN"
@@ -77,7 +77,7 @@
                 android:text="ebaymet"
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryVeryDark" />
+                android:textColor="@color/colorPrimaryDark" />
         </RadioGroup>
     </LinearLayout>
 
@@ -88,7 +88,7 @@
             android:id="@+id/ok_pay_BTN"
             android:layout_width="100dp"
             android:layout_height="48dp"
-            android:backgroundTint="@color/colorPrimaryMidDark"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:textColor="@color/white"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -101,7 +101,7 @@
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:gravity="center"
-            android:backgroundTint="@color/colorPrimaryMidDark"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:textColor="@color/whiteCardColor"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dp"

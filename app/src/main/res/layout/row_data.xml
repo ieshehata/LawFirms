@@ -20,7 +20,7 @@
         android:layout_marginBottom="16dp"
         android:maxLines="2"
         android:text="Data Title"
-        android:textColor="@color/colorPrimaryVeryDark"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

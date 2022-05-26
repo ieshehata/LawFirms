@@ -34,7 +34,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-
 public class OTPActivity extends AppCompatActivity {
     private EditText otp;
     private FirebaseAuth mAuth;

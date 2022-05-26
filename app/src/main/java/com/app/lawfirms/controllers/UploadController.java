@@ -12,8 +12,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class UploadController {
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageReference = storage.getReference();
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    private final StorageReference storageReference = storage.getReference();
 
     public void uploadImage(Uri filePath, final StringCallback callback) {
         if (filePath != null) {

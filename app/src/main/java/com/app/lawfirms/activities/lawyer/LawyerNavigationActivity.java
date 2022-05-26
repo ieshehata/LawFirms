@@ -136,8 +136,8 @@ public class LawyerNavigationActivity extends AppCompatActivity implements OnMap
     }
 
     private void setData(){
-        Point destinationPoint = Point.fromLngLat(SharedData.lawyer.getLongitude(),
-                SharedData.lawyer.getLatitude());
+        Point destinationPoint = Point.fromLngLat(SharedData.currentLawyer.getLongitude(),
+                SharedData.currentLawyer.getLatitude());
         Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
                 locationComponent.getLastKnownLocation().getLatitude());
 

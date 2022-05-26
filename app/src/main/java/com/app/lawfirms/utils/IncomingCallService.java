@@ -30,8 +30,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class IncomingCallService extends Service implements MediaPlayer.OnPreparedListener  {
-    private String CHANNEL_ID = "OT CallChannel";
-    private String CHANNEL_NAME = "OT Call Channel";
+    private final String CHANNEL_ID = "OT CallChannel";
+    private final String CHANNEL_NAME = "OT Call Channel";
     MediaPlayer mediaPlayer;
     Vibrator mvibrator;
     AudioManager audioManager;

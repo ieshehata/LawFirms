@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Calendar"
-                    android:textColor="@color/colorPrimaryVeryDark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:gravity="center"
                     android:textSize="24sp"/>
 
@@ -47,7 +47,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
-                    android:background="@color/bg2"
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -68,7 +67,7 @@
                                 android:text="My Booking"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimaryVeryDark"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:gravity="center"
                                 android:textSize="16sp"
                                 android:layout_marginLeft="0dp" />
@@ -89,7 +88,7 @@
                                 android:text="Unavailable"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimaryVeryDark"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:gravity="center"
                                 android:textSize="16sp"
                                 android:layout_marginLeft="0dp" />
@@ -120,7 +119,7 @@
                                 android:text="Booked"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimaryVeryDark"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:gravity="center"
                                 android:textSize="16sp"
                                 android:layout_marginRight="0dp" />
@@ -142,7 +141,7 @@
                                 android:text="Waiting"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimaryVeryDark"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:gravity="center"
                                 android:textSize="16sp"
                                 android:layout_marginRight="0dp" />
@@ -156,8 +155,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Book"
-                    android:backgroundTint="@color/colorPrimaryMidDark"
-                    android:textColor="@color/colorPrimaryVeryDark"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp"
                     android:padding="6dp"
                     android:layout_marginTop="16dp"

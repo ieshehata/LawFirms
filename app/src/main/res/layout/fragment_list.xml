@@ -23,7 +23,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/no_data_found"
-        android:textColor="@color/colorPrimaryVeryDark"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="gone"/>

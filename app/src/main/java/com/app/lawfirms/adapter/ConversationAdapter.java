@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder> {
-    private ArrayList<ConversationModel> mData = new ArrayList<>();
+    private final ArrayList<ConversationModel> mData = new ArrayList<>();
     private Context context;
 
     public ConversationAdapter(ArrayList<ConversationModel> data) {

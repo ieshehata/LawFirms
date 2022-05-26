@@ -15,8 +15,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserController {
-    private String node = "Users";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "Users";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<UserModel> users = new ArrayList<>();
 
@@ -61,6 +61,28 @@ public class UserController {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     UserModel model = snapshot.getValue(UserModel.class);
                     users.add(model);
+                }
+                callback.onSuccess(users);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onFail(databaseError.getMessage());
+            }
+        });
+    }
+
+    public void getLawyersAlways(int category, final UserCallback callback) {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                users = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    UserModel model = snapshot.getValue(UserModel.class);
+                    assert model != null;
+                    if (model.getUserType() == 2 && model.getCategory() == category) {
+                        users.add(model);
+                    }
                 }
                 callback.onSuccess(users);
             }
@@ -148,7 +170,7 @@ public class UserController {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     UserModel model = snapshot.getValue(UserModel.class);
                     assert model != null;
-                    if (model.getPhone().equals(user.getPhone()) && model.getPass().equals(user.getPass()))
+                    if (model.getPhone().equals(user.getPhone()) && model.getPass().equals(user.getPass()) && model.getUserType() == user.getUserType())
                         users.add(model);
                 }
                 callback.onSuccess(users);

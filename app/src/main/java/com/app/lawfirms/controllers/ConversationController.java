@@ -23,8 +23,8 @@ import java.util.Calendar;
 import java.util.Collections;
 
 public class ConversationController {
-    private String node = "Conversations";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "Conversations";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<ConversationModel> conversations = new ArrayList<>();
 

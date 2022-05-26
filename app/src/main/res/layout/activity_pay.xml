@@ -165,7 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/colorPrimaryMidDark"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Pay"
         android:textColor="#fff"
         android:textSize="14sp" />

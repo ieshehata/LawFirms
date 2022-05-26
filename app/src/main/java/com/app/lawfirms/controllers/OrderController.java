@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class OrderController {
-    private String node = "Orders";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "Orders";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<OrderModel> orders = new ArrayList<>();
 
@@ -126,7 +126,7 @@ public class OrderController {
                 orders = new ArrayList<>();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     OrderModel model = snapshot.getValue(OrderModel.class);
-                    if(model.getLawyer() != null && model.getLawyer().getKey() != null && model.getLawyer().getKey().equals(userKey) && model.getLawyer() != null) {
+                    if(model.getLawyer() != null && model.getLawyer().getKey() != null && model.getLawyer().getKey().equals(userKey) && model.getUser() != null) {
                         orders.add(model);
                     }
                 }
@@ -147,7 +147,7 @@ public class OrderController {
                 orders = new ArrayList<>();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     OrderModel model = snapshot.getValue(OrderModel.class);
-                    if(model.getUser() != null && model.getUser().getKey() != null && model.getUser().getKey().equals(userKey)) {
+                    if(model.getUser() != null && model.getUser().getKey() != null && model.getUser().getKey().equals(userKey) && model.getLawyer() != null) {
                         orders.add(model);
                     }
                 }

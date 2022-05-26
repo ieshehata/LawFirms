@@ -1,19 +1,26 @@
 package com.app.lawfirms.models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class LawyersReqModel {
     private String key;
-    private UserModel lawyerer;
+    private UserModel lawyer;
     private int state; // 0->Unseen, 1->Accepted, -1->Rejected
     private Date createdAt;
 
     public LawyersReqModel() {
     }
 
-    public LawyersReqModel(String key, UserModel lawyerer, int state, Date createdAt) {
+    public LawyersReqModel(UserModel lawyer) {
+        this.lawyer = lawyer;
+        this.state = 0;
+        this.createdAt = Calendar.getInstance().getTime();
+    }
+
+    public LawyersReqModel(String key, UserModel lawyer, int state, Date createdAt) {
         this.key = key;
-        this.lawyerer = lawyerer;
+        this.lawyer = lawyer;
         this.state = state;
         this.createdAt = createdAt;
     }
@@ -26,12 +33,12 @@ public class LawyersReqModel {
         this.key = key;
     }
 
-    public UserModel getLawyerer() {
-        return lawyerer;
+    public UserModel getLawyer() {
+        return lawyer;
     }
 
-    public void setLawyerer(UserModel lawyerer) {
-        this.lawyerer = lawyerer;
+    public void setLawyer(UserModel lawyer) {
+        this.lawyer = lawyer;
     }
 
     public int getState() {

@@ -139,15 +139,14 @@
                         android:textCursorDrawable="@color/colorPrimary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Email edit text -->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/login_description_field"
+                    android:id="@+id/description_field"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    app:hintTextColor="@color/colorPrimary">
+                    android:layout_marginTop="8dp"
+                    app:boxStrokeColor="@color/black"
+                    app:hintTextColor="@color/colorPrimaryDark">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/description"
@@ -155,13 +154,99 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/description"
                         android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:visibility="gone"
-                        android:textCursorDrawable="@color/colorPrimary" />
+                        android:inputType="textMultiLine|textImeMultiLine|textCapSentences"
+                        android:maxLines="3"
+                        android:minHeight="120dp"
+                        android:singleLine="false"
+                        android:textCursorDrawable="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/price_field"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:suffixText="KWD"
+                    app:hintTextColor="@color/colorPrimary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Price For Consultant"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@color/colorPrimary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/governorate_field"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:hintTextColor="@color/colorPrimary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/governorate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Governorate"
+                        android:inputType="none"
+                        android:textCursorDrawable="@color/colorPrimary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/city_field"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:hintTextColor="@color/colorPrimary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="City"
+                        android:inputType="none"
+                        android:textCursorDrawable="@color/colorPrimary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/category_field"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:hintTextColor="@color/colorPrimary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Category"
+                        android:inputType="none"
+                        android:textCursorDrawable="@color/colorPrimary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:text="Place Location"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone"/>
 
                 <Button
                     android:id="@+id/register"
@@ -184,7 +269,7 @@
                     android:textAlignment="center"
                     android:textSize="16sp"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:textColor="@color/colorPrimaryMidDark" />
+                    android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 
         </LinearLayout>

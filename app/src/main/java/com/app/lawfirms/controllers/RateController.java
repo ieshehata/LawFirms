@@ -17,8 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class RateController {
-    private String node = "Rates";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "Rates";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<RateModel> rates = new ArrayList<>();
 

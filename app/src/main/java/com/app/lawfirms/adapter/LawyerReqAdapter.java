@@ -18,10 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class LawyerReqAdapter extends RecyclerView.Adapter<LawyerReqAdapter.ViewHolder> {
-    private ArrayList<LawyersReqModel> mData = new ArrayList<>();
-    private LawyerReqListener mListener;
+    private final ArrayList<LawyersReqModel> mData = new ArrayList<>();
+    private final LawyerReqListener mListener;
     private Context context;
-    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
+    private final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy - hh:mm aa");
     @SuppressLint("SimpleDateFormat")
 
     public LawyerReqAdapter(ArrayList<LawyersReqModel> data, LawyerReqListener listener) {
@@ -41,9 +41,9 @@ public class LawyerReqAdapter extends RecyclerView.Adapter<LawyerReqAdapter.View
     @SuppressLint({"UseCompatTextViewDrawableApis", "DefaultLocale"})
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(mData.get(position).getLawyerer().getName());
-        holder.email.setText(mData.get(position).getLawyerer().getEmail());
-        holder.phone.setText(mData.get(position).getLawyerer().getPhone());
+        holder.name.setText(mData.get(position).getLawyer().getName());
+        holder.email.setText(mData.get(position).getLawyer().getEmail());
+        holder.phone.setText(mData.get(position).getLawyer().getPhone());
     }
 
     @Override

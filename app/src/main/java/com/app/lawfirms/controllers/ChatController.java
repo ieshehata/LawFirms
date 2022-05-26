@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ChatController {
-    private String node = "Chats";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final String node = "Chats";
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance("https://lawfirms-745d0-default-rtdb.europe-west1.firebasedatabase.app");
     private DatabaseReference myRef = database.getReference(node);
     private ArrayList<ChatModel> chats = new ArrayList<>();
     private Query chatQuery;
